@@ -1,0 +1,13 @@
+#!/bin/bash
+
+export DOCKER_CLI_EXPERIMENTAL=enabled
+
+echo "Running hook: ${0}"
+
+# already built, but push does not exist as a separate command.
+docker buildx build \
+  --push \
+  --tag ${IMAGE_NAME} \
+  --file ${DOCKERFILE_PATH} \
+  --platform=linux/arm,linux/arm64,linux/amd64 .
+  .

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+export DOCKER_CLI_EXPERIMENTAL=enabled
+
+echo "Running hook: ${0}"
+
+docker buildx build \
+  --tag ${IMAGE_NAME} \
+  --file ${DOCKERFILE_PATH} \
+  --platform=linux/arm,linux/arm64,linux/amd64 .
+  .
