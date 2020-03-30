@@ -1,15 +1,26 @@
 #!/bin/bash
 
-export DOCKER_CLI_EXPERIMENTAL=enabled
+mkdir -p ~/.docker/cli-plugins \
+  && curl \
+    --silent \
+    --location \
+    --output ~/.docker/cli-plugins/docker-buildx \
+    https://github.com/docker/buildx/releases/download/v0.2.0/buildx-v0.2.0.linux-amd64 \
+  && chmod +x ~/.docker/cli-plugins/docker-buildx
 
-echo "Running hook: ${0}"
+docker buildx create \
+  --use \
+  --name multiarch
 
 # Register binfmt_misc interpreters
 docker run \
   --rm \
   --privileged \
-  docker/binfmt:820fdd95a9972a5308930a2bdfb8573dd4447ad3 
+  multiarch/qemu-user-static --reset --persistent yes
 
 docker buildx create \
   --use \
   --name multiarch
+
+docker buildx inspect
+
