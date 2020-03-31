@@ -28,7 +28,7 @@ jobs:
         run: hooks/build
 
       - name: docker hub login
-        run: docker login --user "${{ secrets.DOCKERHUB_USER }}" --password-stdin <<< "${{ secrets.DOCKERHUB_TOKEN }}"
+        run: docker login --username "${{ secrets.DOCKERHUB_USER }}" --password-stdin <<< "${{ secrets.DOCKERHUB_TOKEN }}"
 
       - name: push
         env:
