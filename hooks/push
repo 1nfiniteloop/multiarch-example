@@ -9,5 +9,5 @@ docker buildx build \
   --push \
   --tag ${IMAGE_NAME} \
   --file ${DOCKERFILE_PATH} \
-  --platform=linux/arm,linux/arm64,linux/amd64 .
+  --platform=linux/arm,linux/arm64,linux/amd64 \
   .
