@@ -15,6 +15,9 @@ jobs:
       - name: checkout
         uses: actions/checkout@v1
 
+      - name: info
+        run: docker version
+
       - name: prepare build
         run: hooks/pre_build
 
@@ -24,5 +27,15 @@ jobs:
           IMAGE_NAME: 1nfiniteloop/multiarch-example:latest
         run: hooks/build
 
+      - name: docker hub login
+        run: docker login --user "${{ secrets.DOCKERHUB_USER }}" --password-stdin <<< "${{ secrets.DOCKERHUB_TOKEN }}"
+
       - name: push
-        run: echo "TODO!"
+        env:
+          DOCKERFILE_PATH: Dockerfile
+          IMAGE_NAME: 1nfiniteloop/multiarch-example:latest
+        run: hooks/push
+
+      - name: docker hub logout
+        run: docker logout
+
