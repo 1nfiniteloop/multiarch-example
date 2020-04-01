@@ -1,7 +1,8 @@
 # multiarch-example
 
 This project demonstrates how to use the experimental docker build engine
-*buildx* in hub to build multiarch containers.
+*buildx* in GitHub actions to build and publish multiarch containers. Running
+this in docker-hub proved to be challenging.
 
 ## Steps
 
@@ -16,7 +17,9 @@ docker buildx build --tag 1nfiniteloop/multiarch-example --platform=linux/arm,li
 
 ### Inspect
 
+```bash
 docker buildx imagetools inspect 1nfiniteloop/multiarch-example
+```
 
 ## Reference
 
