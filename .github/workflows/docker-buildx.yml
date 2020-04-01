@@ -12,30 +12,24 @@ jobs:
     name: build and publish docker images
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v1
-
       - name: info
         run: docker version
 
-      - name: prepare build
-        run: hooks/pre_build
+      - name: checkout
+        uses: actions/checkout@v1
 
-      - name: build
-        env:
-          DOCKERFILE_PATH: Dockerfile
-          IMAGE_NAME: 1nfiniteloop/multiarch-example:latest
-        run: hooks/build
+      - name: prepare build
+        run: .github/hooks/pre_build
 
       - name: docker hub login
         run: docker login --username "${{ secrets.DOCKERHUB_USER }}" --password-stdin <<< "${{ secrets.DOCKERHUB_TOKEN }}"
 
-      - name: push
+        # TODO tag docker image with git-tag, if available
+      - name: build and push
         env:
-          DOCKERFILE_PATH: Dockerfile
           IMAGE_NAME: 1nfiniteloop/multiarch-example:latest
-        run: hooks/push
+          TARGETS: linux/arm,linux/arm64,linux/amd64
+        run: .github/hooks/build
 
       - name: docker hub logout
         run: docker logout
-
