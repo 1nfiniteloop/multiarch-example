@@ -13,7 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: info
-        run: docker version
+        run: |
+          echo "github.ref: ${{ github.ref }}"
+          docker version
 
       - name: checkout
         uses: actions/checkout@v1

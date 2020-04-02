@@ -23,5 +23,7 @@ docker buildx imagetools inspect 1nfiniteloop/multiarch-example
 
 ## Reference
 
-* docker buildx - <https://www.docker.com/blog/getting-started-with-docker-for-arm-on-linux/>
+* Docker buildx blog - <https://www.docker.com/blog/getting-started-with-docker-for-arm-on-linux/>
+* Buildx reference - <https://github.com/docker/buildx>
 * Docker hub hooks - <https://docs.docker.com/docker-hub/builds/advanced/>
+* Github actions - <https://help.github.com/en/actions/reference/>
