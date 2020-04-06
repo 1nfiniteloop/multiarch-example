@@ -30,7 +30,7 @@ jobs:
       - name: build and push
         env:
           IMAGE_NAME: 1nfiniteloop/multiarch-example:latest
-          TARGETS: linux/arm,linux/arm/v7,linux/arm64,linux/amd64
+          TARGETS: linux/arm/v7,linux/arm64,linux/amd64
         run: .github/hooks/build
 
       - name: docker hub logout
